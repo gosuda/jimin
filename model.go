@@ -106,7 +106,7 @@ func Connect(m Providers) (c provider.LLMClient, err error) {
 func GetModel(c provider.LLMClient, name string, params Parameters) (m llm.Model, err error) {
 	config := new(llm.Config)
 	config.Temperature = &params.Temperature
-	config.SafetyFilterThreshold = llm.BlockOnlyHigh
+	config.SafetyFilterThreshold = llm.BlockDefault
 	if params.TopP != 0 {
 		config.TopP = &params.TopP
 	}
