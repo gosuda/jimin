@@ -3,7 +3,9 @@ module gosuda.org/jimin
 go 1.23.1
 
 require (
+	github.com/google/go-jsonnet v0.20.0
 	github.com/lemon-mint/coord v0.0.0-20241018061321-32d557d35e7e
+	github.com/rs/zerolog v1.33.0
 	gopkg.eu.org/envloader v1.1.0
 )
 
@@ -27,6 +29,8 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.4 // indirect
 	github.com/googleapis/gax-go/v2 v2.13.0 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/sashabaranov/go-openai v1.32.5 // indirect
 	github.com/valyala/fastjson v1.6.4 // indirect
 	go.opencensus.io v0.24.0 // indirect
@@ -48,4 +52,5 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241104194629-dd2ea8efbc28 // indirect
 	google.golang.org/grpc v1.67.1 // indirect
 	google.golang.org/protobuf v1.35.1 // indirect
+	sigs.k8s.io/yaml v1.4.0 // indirect
 )
