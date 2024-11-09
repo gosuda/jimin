@@ -1,1 +1,5 @@
 package indexer
+
+func SplitChunk() {
+	
+}
