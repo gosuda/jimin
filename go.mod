@@ -4,8 +4,10 @@ go 1.23.1
 
 require (
 	github.com/google/go-jsonnet v0.20.0
+	github.com/jackc/pgx/v5 v5.7.1
 	github.com/lemon-mint/coord v0.0.0-20241018061321-32d557d35e7e
 	github.com/rs/zerolog v1.33.0
+	github.com/segmentio/ksuid v1.0.4
 	gopkg.eu.org/envloader v1.1.0
 )
 
@@ -29,8 +31,12 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.4 // indirect
 	github.com/googleapis/gax-go/v2 v2.13.0 // indirect
+	github.com/jackc/pgpassfile v1.0.0 // indirect
+	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
+	github.com/kr/text v0.2.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
+	github.com/rogpeppe/go-internal v1.13.1 // indirect
 	github.com/sashabaranov/go-openai v1.32.5 // indirect
 	github.com/valyala/fastjson v1.6.4 // indirect
 	go.opencensus.io v0.24.0 // indirect
