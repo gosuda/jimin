@@ -1,3 +1,5 @@
+DROP EXTENSION vector;
+
 DROP TABLE users;
 
 DROP INDEX idx_users_unique_email;

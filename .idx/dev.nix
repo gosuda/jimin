@@ -8,6 +8,7 @@
   packages = [
     pkgs.go
     pkgs.sqlc
+    pkgs.go-migrate
     # pkgs.python311
     # pkgs.python311Packages.pip
     # pkgs.nodejs_20
@@ -22,6 +23,10 @@
       # "vscodevim.vim"
       "golang.go"
       "PKief.material-product-icons"
+      "cweijan.dbclient-jdbc"
+      "cweijan.vscode-database-client2"
+      "mtxr.sqltools"
+      "mtxr.sqltools-driver-pg"
     ];
 
     # Enable previews
