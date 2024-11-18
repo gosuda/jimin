@@ -11,6 +11,8 @@ import (
 	_ "github.com/lemon-mint/coord/provider/vertexai"
 )
 
+//go:generate sqlc generate
+
 func main() {
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnixMs
 

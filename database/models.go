@@ -8,6 +8,15 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type RandflakeNode struct {
+	ID          int64  `json:"id"`
+	RangeStart  int64  `json:"range_start"`
+	RangeEnd    int64  `json:"range_end"`
+	ValidFrom   int64  `json:"valid_from"`
+	ValidTo     int64  `json:"valid_to"`
+	LeaseHolder string `json:"lease_holder"`
+}
+
 type User struct {
 	ID            int64              `json:"id"`
 	Name          string             `json:"name"`
