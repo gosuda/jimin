@@ -34,7 +34,9 @@ type Server struct {
 	serverID ksuid.KSUID
 	ln       net.Listener
 	srv      http.Server
-	errs     []error
+
+	errsMu sync.Mutex
+	errs   []error
 }
 
 func New() *Server {
@@ -55,10 +57,16 @@ func (g *Server) setState(status ServerStatus) {
 
 func (g *Server) aError(err error) {
 	if err != nil {
-		g.mu.Lock()
+		g.errsMu.Lock()
 		g.errs = append(g.errs, err)
-		g.mu.Unlock()
+		g.errsMu.Unlock()
 	}
+}
+
+func (g *Server) clearErrs() {
+	g.errsMu.Lock()
+	g.errs = nil
+	g.errsMu.Unlock()
 }
 
 func (g *Server) State() ServerStatus {
@@ -80,6 +88,7 @@ func (g *Server) Start(ln net.Listener) error {
 		return ErrInvalidListener
 	}
 
+	g.clearErrs()
 	g.ln = ln
 	g.stop = make(chan struct{})
 	g.setState(ServerStatusStarting)
@@ -108,10 +117,9 @@ func (g *Server) doStop() error {
 	g.setState(ServerStatusStopping)
 
 	close(g.stop)
+
 	err := g.srv.Shutdown(context.Background())
-	if err != nil {
-		g.aError(err)
-	}
+	g.aError(err)
 
 	g.stop = nil
 	g.ln = nil

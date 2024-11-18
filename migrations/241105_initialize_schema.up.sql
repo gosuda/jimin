@@ -63,3 +63,12 @@ CREATE INDEX idx_ws_role_members_ws_id_ws_member_id ON ws_role_members (ws_id, w
 CREATE INDEX idx_ws_role_members_ws_id_ws_role_id ON ws_role_members (ws_id, ws_role_id);
 
 CREATE INDEX idx_ws_role_members_ws_id ON ws_role_members (ws_id);
+
+CREATE TABLE randflake_nodes (
+    id BIGSERIAL PRIMARY KEY,
+    range_start BIGINT NOT NULL,
+    range_end BIGINT NOT NULL,
+    valid_from BIGINT NOT NULL,
+    valid_to BIGINT NOT NULL,
+    lease_holder TEXT NOT NULL
+);

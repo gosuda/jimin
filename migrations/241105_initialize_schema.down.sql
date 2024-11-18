@@ -27,3 +27,5 @@ DROP INDEX idx_ws_role_members_ws_id_ws_member_id;
 DROP INDEX idx_ws_role_members_ws_id_ws_role_id;
 
 DROP INDEX idx_ws_role_members_ws_id;
+
+DROP TABLE randflake_nodes;
