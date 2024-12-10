@@ -8,4 +8,4 @@ SELECT * FROM users WHERE id = $1;
 UPDATE users SET email_verified = true WHERE id = $1 AND email = $2;
 
 -- name: CreateUser :one
-INSERT INTO users (id, name, email, password, email_verified) VALUES ($1, $2, $3, $4, $5) RETURNING *;
+INSERT INTO users (id, name, email, email_verified) VALUES ($1, $2, $3, $4) RETURNING *;

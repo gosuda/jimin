@@ -9,6 +9,36 @@ import (
 	"context"
 )
 
+const createUser = `-- name: CreateUser :one
+INSERT INTO users (id, name, email, email_verified) VALUES ($1, $2, $3, $4) RETURNING id, name, email, email_verified, created_at, updated_at
+`
+
+type CreateUserParams struct {
+	ID            int64  `json:"id"`
+	Name          string `json:"name"`
+	Email         string `json:"email"`
+	EmailVerified bool   `json:"email_verified"`
+}
+
+func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, error) {
+	row := q.db.QueryRow(ctx, createUser,
+		arg.ID,
+		arg.Name,
+		arg.Email,
+		arg.EmailVerified,
+	)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.Email,
+		&i.EmailVerified,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
 const getUserByEmail = `-- name: GetUserByEmail :one
 SELECT id, name, email, email_verified, created_at, updated_at FROM users WHERE email = $1
 `

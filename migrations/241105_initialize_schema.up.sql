@@ -12,6 +12,20 @@ CREATE TABLE
 
 CREATE UNIQUE INDEX idx_users_unique_email ON users (email);
 
+CREATE TABLE
+    users_auth (
+        id BIGINT PRIMARY KEY,
+        user_id BIGINT NOT NULL,
+        provider_id BIGINT NOT NULL,
+        provider_subject TEXT NOT NULL,
+        associated_data TEXT NOT NULL,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW ()
+    );
+
+CREATE UNIQUE INDEX idx_users_auth_unique_user_id_provider ON users_auth (user_id, provider);
+CREATE UNIQUE INDEX idx_users_auth_unique_provider_subject ON users_auth (provider_id, provider_subject);
+
 -- workspaces
 CREATE TABLE
     wss (
@@ -83,7 +97,13 @@ CREATE TABLE
         id BIGSERIAL PRIMARY KEY,
         range_start BIGINT NOT NULL,
         range_end BIGINT NOT NULL,
-        valid_from BIGINT NOT NULL,
-        valid_to BIGINT NOT NULL,
-        lease_holder TEXT NOT NULL
+        lease_holder UUID NOT NULL,
+        lease_start BIGINT NOT NULL,
+        lease_end BIGINT NOT NULL
     );
+
+CREATE UNIQUE INDEX idx_randflake_nodes_unique_range_start ON randflake_nodes (range_start);
+
+CREATE UNIQUE INDEX idx_randflake_nodes_unique_range_start_lease_end ON randflake_nodes (range_start ASC, lease_end DESC);
+
+CREATE INDEX idx_randflake_nodes_lease_end ON randflake_nodes (lease_end ASC);
